@@ -1,0 +1,1095 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar with Video Background</title>
+    <script src="https://kit.fontawesome.com/abd18701d6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/proj/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        
+     body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+nav {
+    background-color: white;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    width: 100%;
+    z-index: 10;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 60px;
+}
+
+.links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+.links a {
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    padding: 5px 10px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.links a:hover {
+    background-color: #f0f0f0;
+}
+
+.login-btn {
+    background-color: #1a57a5;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.login-btn:hover {
+    background-color: #155a8a;
+}
+
+.fa-bars {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown .dropdown-toggle {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 10;
+    width: 150px;
+}
+
+.dropdown .dropdown-menu li {
+    padding: 5px 15px;
+    white-space: nowrap;
+}
+
+.dropdown .dropdown-menu li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown .dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+}
+
+@media (min-width: 768px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: relative;
+        width: 100%;
+    }
+
+    .dropdown .dropdown-toggle {
+        display: block;
+        padding: 10px 20px;
+        font-size: 18px;
+    }
+
+    .dropdown.open .dropdown-menu {
+        display: block;
+    }
+
+    .links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .links a {
+        padding: 15px 20px;
+        font-size: 18px;
+    }
+
+    .fa-bars {
+        display: block;
+    }
+
+    .section1 h1 {
+        font-size: 2.5rem;
+        padding: 0 15px;
+    }
+}
+
+.section1 {
+    height: 80vh; /* Maintain fixed height */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px; /* Reduced padding */
+}
+
+#myVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    margin: 0;
+    padding: 0;
+}
+
+.overlay-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 5px;
+    color: white;
+    box-sizing: border-box;
+    z-index: 1;
+    padding: 20px; /* Reduced padding */
+}
+
+.left-content {
+    max-width: 45%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left-content h2 {
+    font-size: 2.5rem;
+    margin: 0 0 15px;
+}
+
+.left-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.right-card {
+    background-color: rgba(0, 0, 0, 0.6); /* Blackish transparent background */
+    color: white;
+    padding: 10px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    max-width: 320px; /* Slightly reduced max-width */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: 300px; /* Reduced height */
+    border-radius: 5px;
+    margin-bottom: 20px; /* Slightly increased margin */
+}
+
+.card-title {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.card-buttons .btn {
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.card-buttons .read-more {
+    background-color: #e53935;
+}
+
+.card-buttons .download {
+    background-color: #1e88e5;
+}
+
+.card-buttons .btn:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .section1{
+        height: auto;
+    }
+    .overlay-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .left-content {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .right-card {
+        max-width: 100%;
+    }
+}
+
+.card-image {
+    object-fit: cover; /* Ensures the image retains aspect ratio and fits the area */
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.featured {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 320px;
+      text-align: left;
+      overflow: hidden;
+      position: relative;
+      transition: box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .image {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .download-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #f4f4f4;
+      color: #333;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .download-icon i {
+      font-size: 14px;
+    }
+    
+    .content {
+      padding: 15px;
+    }
+    
+    .date {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+
+  
+
+    .recently-added {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+     
+      border-radius: 8px;
+    }
+
+    /* Section Title */
+    .recently-added h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Filters */
+    .filters {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .filter-btn {
+      padding: 8px 15px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .filter-btn:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Dropdown Content */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 150px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 8px 10px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Horizontal Line */
+    hr {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 10px 0 20px;
+    }
+
+    /* Report Container */
+    .report-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .report-item {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 15px;
+    }
+
+    .report-img {
+      width: 120px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .report-content {
+      flex: 1;
+    }
+
+    .report-date {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 5px;
+    }
+
+    .report-content h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .report-description {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Download Button */
+    .download-btn {
+      display: flex;
+      align-items: center;
+    }
+
+    .download-link {
+      color: #6c63ff;
+      font-size: 14px;
+      text-decoration: none;
+      background-color: #f4f4ff;
+      padding: 8px 12px;
+      border-radius: 5px;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .download-link:hover {
+      background-color: #e0e0ff;
+    }
+
+    .download-link i {
+      font-size: 16px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .filters {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .report-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .report-img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .custom-footer {
+  background-color: #f7f7fc;
+  padding: 4% 6% 2% 6%;
+  font-family: '__Open_Sans_c34c9b', '__Open_Sans_Fallback_c34c9b', sans-serif;
+}
+
+.custom-footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.custom-footer-section {
+  flex: 1;
+  margin: 10px;
+  min-width: 23% !important;
+}
+
+.custom-footer-logo {
+  width: 42%;
+}
+
+.custom-footer-section h3 { 
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: #555;
+}
+
+.custom-footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.custom-footer-section ul li {
+  margin: 15px 0;
+}
+
+.custom-footer-section ul li a {
+  text-decoration: none;
+  color: #555;
+  font-size: 15px;
+}
+
+.custom-footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.custom-footer-apps a img {
+  width: 120px;
+  margin-right: 10px;
+}
+
+.custom-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.custom-footer-links {
+  display: flex;
+  gap: 15px;
+}
+
+.custom-footer-links li {
+  list-style: none;
+}
+
+.custom-footer-links li a {
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+}
+
+.custom-footer-links li a:hover {
+  text-decoration: underline;
+}
+
+.custom-footer-settings {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-dropdown-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 150px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.custom-dropdown-button .flag-icon img {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.custom-arrow {
+  transform: rotate(180deg); /* Ensures dropdown opens upward */
+}
+
+.custom-dropdown-content {
+  display: none;
+  position: absolute;
+  bottom: 100%; /* Makes dropdown open upwards */
+  left: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.custom-dropdown-content .custom-dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  border-left: 5px solid transparent; /* Default blue bar hidden */
+}
+
+.custom-dropdown-item a {
+  text-decoration: none;
+  color: #555;
+}
+
+.custom-dropdown-content .custom-dropdown-item img {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.custom-dropdown-content .custom-dropdown-item:hover {
+  background-color: #f8f8fc;
+}
+
+.custom-dropdown-content .active {
+  border-left-color: #1a1a37; /* Blue bar for selected item */
+  color: #1a1a37;
+}
+
+.custom-dropdown:hover .custom-dropdown-content {
+  display: block;
+}
+
+.custom-footer-social a {
+  width: 2rem;
+  height: 2rem;
+}
+
+.custom-footer-social a span {
+  width: 2.2rem;
+  height: 1.7rem;
+  padding-top: 8px;
+  border-radius: 25%;
+  margin: 0 5px;
+  background-color: #2c255e;
+  color: #fff;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .custom-footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .custom-footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .custom-footer-social {
+    margin-top: 10px;
+  }
+
+  .custom-footer-logo {
+    width: 82%;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="left-section">
+                <div class="logo" >
+                  <a href="index.html">  <img src="images/logo_without_background.png" alt="Logo" style="height: 65px;width: 90px;"></a>
+                </div>
+                <div class="links">
+                    <a href="buy.html">Buy</a>
+                    <a href="rent.html">Rent</a>
+                    <a href="agent.html">Commercial</a>
+                    <a href="Findagent.html">Find Agent</a>
+                    <div class="dropdown">
+                        <a href="#brand" class="dropdown-toggle">Explore</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="hub.html">Insight Hub</a></li>
+                            <li><a href="communities.html">Communities</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+            <a href="login.html" class="login-btn">Login</a>
+            <span class="fa fa-bars" onclick="toggleMenu()"></span>
+        </div>
+    </nav>
+    <section class="section1">
+        <video autoplay muted loop id="myVideo">
+            <source src="images/insighthub.mp4" type="video/mp4">
+        </video>
+        <div class="overlay-container">
+            <div class="left-content">
+                <h2>Insights Hub <span style="color: #7a1fa2;">Qatar</span></h2>
+                <p>
+                    Explore Property Finder's one-stop HUB for comprehensive publications on UAE, Egypt, Qatar, Bahrain, and KSA real estate. Stay informed with the latest trends, market analysis, and expert insights in one convenient HUB.
+                </p>
+            </div>
+            <div class="right-card">
+                <h3>Latest</h3>
+                <img src="https://production-pf-strapi-cms.s3.ap-southeast-1.amazonaws.com/Image_04_12_2024_at_1_20_PM_42a23ec97d.jpeg" alt="Market Watch" class="card-image">
+                <p class="card-title">Qatar H1 2024, Market Watch Residential Real Estate Insights</p>
+                <div class="card-buttons">
+                    <a href="#" class="btn read-more">Read more</a>
+                    <a href="#" class="btn download">Download PDF</a>
+                </div>
+            </div>
+        </div>
+        
+       
+    </section>
+   
+
+    <section class="featured"  style="margin-top: 60px;">
+        <h2>Featured</h2>
+        <div class="card-container">
+          <!-- Card 1 -->
+          <div class="card">
+            <div class="image">
+              <img src="images/card1.jpeg" alt="Qatar H1 2024 Report">
+              <div class="download-icon">
+                <i class="fa-solid fa-download"></i>
+              </div>
+            </div>
+            <div class="content">
+              <p class="date">September 25, 2024 | Biannually Market Watch</p>
+              <h3>Qatar H1 2024, Market Watch Residential Real Estate Insights</h3>
+            </div>
+          </div>
+    
+          <!-- Card 2 -->
+          <div class="card">
+            <div class="image">
+              <img src="images/card2.jpeg" alt="Bahrain H1 2024 Report" >
+              <div class="download-icon">
+                <i class="fa-solid fa-download"></i>
+              </div>
+            </div>
+            <div class="content">
+              <p class="date">September 25, 2024 | Biannually Market Watch</p>
+              <h3>Bahrain H1 2024, Market Watch Residential Real Estate Insights</h3>
+            </div>
+          </div>
+    
+          <!-- Card 3 -->
+          <div class="card">
+            <div class="image">
+              <img src="images/card3.jpeg" alt="Qatar Annual 2023 Report" >
+              <div class="download-icon">
+                <i class="fa-solid fa-download"></i>
+              </div>
+            </div>
+            <div class="content">
+              <p class="date">December 25, 2023 | Annually Market Watch</p>
+              <h3>Qatar Annual 2023, Market Watch Annual Residential Real Estate Insights</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+  <section class="recently-added" style="margin-top: 60px;">
+    <div style="display: flex;flex-wrap: wrap; justify-content: space-between;">
+    <h2>Recently added</h2>
+    <!-- Filters -->
+    <div class="filters">
+      <div class="filter-btn">
+        Report Type <i class="fa-solid fa-chevron-down"></i>
+        <div class="dropdown-content">
+          <a href="#">Annual</a>
+          <a href="#">Biannual</a>
+          <a href="#">Quarterly</a>
+        </div>
+      </div>
+      <div class="filter-btn">
+        Periodicity <i class="fa-solid fa-chevron-down"></i>
+        <div class="dropdown-content">
+          <a href="#">2024</a>
+          <a href="#">2023</a>
+        </div>
+      </div>
+      <div class="filter-btn">
+        Year <i class="fa-solid fa-chevron-down"></i>
+        <div class="dropdown-content">
+          <a href="#">This Year</a>
+          <a href="#">Last Year</a>
+        </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <!-- Report List -->
+    <div class="report-container">
+      <!-- Report 1 -->
+      <div class="report-item">
+        <img src="images/card1.jpeg" alt="Qatar H1 2024" class="report-img">
+        <div class="report-content">
+          <p class="report-date">September 25, 2024 | Biannually Market Watch</p>
+          <h3>Qatar H1 2024, Market Watch Residential Real Estate Insights</h3>
+          <p class="report-description">
+            • In the first half of 2024, the issuance of new building permits rose by 4.9% compared to the same period in 2023, totaling 3,998 permits. ...
+          </p>
+        </div>
+        <div class="download-btn">
+          <a href="#" class="download-link">
+            <i class="fa-solid fa-download"></i> Download PDF
+          </a>
+        </div>
+      </div>
+
+      <!-- Report 2 -->
+      <div class="report-item">
+        <img src="images/card2.jpeg" alt="Qatar Annual 2023" class="report-img">
+        <div class="report-content">
+          <p class="report-date">December 25, 2023 | Annually Market Watch</p>
+          <h3>Qatar Annual 2023, Market Watch Annual Residential Real Estate Insights</h3>
+          <p class="report-description">
+            • Qatar has become one of the world's wealthiest economies with a GDP per capita of $75,000 in 2023. • The nominal GDP is expected to re...
+          </p>
+        </div>
+        <div class="download-btn">
+          <a href="#" class="download-link">
+            <i class="fa-solid fa-download"></i> Download PDF
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="custom-footer">
+    <div class="custom-footer-top">
+      <div class="custom-footer-section">
+        <img src="footer-logo.png" alt="Property Finder Logo" class="custom-footer-logo" />
+      </div>
+      <div class="custom-footer-section">
+        <h3>Property Finder</h3>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="custom-footer-section">
+        <h3>Real estate professionals</h3>
+        <ul>
+          <li><a href="#">PF Expert</a></li>
+        </ul>
+      </div>
+      <div class="custom-footer-section"></div>
+    </div>
+  
+    <div class="custom-footer-section custom-footer-apps">
+      <a href="https://apps.apple.com/qa/app/property-finder-real-estate/id897540233" target="_blank"><img src="App_store.png" alt="App Store" /></a>
+      <a href="https://play.google.com/store/apps/details?id=ae.propertyfinder.propertyfinder&gl=qa&hl=en" target="_blank"><img src="Google_play.png" alt="Google Play" /></a>
+      <a href="https://appgallery.huawei.com/app/C105081471" target="_blank"><img src="App_Gallery .png" alt="/p" /></a>
+    </div>
+  
+    <div class="custom-footer-bottom">
+      <ul class="custom-footer-links">
+        <li><a href="https://www.propertyfinder.qa/en/terms-and-conditions.html?tab=for-users">Terms & Conditions</a></li>
+        <li><a href="https://www.propertyfinder.qa/en/privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="https://www.propertyfinder.qa/en/cookies-policy.html">Cookies Policy</a></li>
+      </ul>
+      <div class="custom-footer-settings">
+        <span>عربي</span>
+        <div class="custom-dropdown">
+          <button class="custom-dropdown-button">Qatar<span class="custom-arrow">&#x25BC;</span></button>
+          <div class="custom-dropdown-content">
+            <div class="custom-dropdown-item"><a href="https://www.propertyfinder.ae/">UAE</a></div>
+            <div class="custom-dropdown-item"> <a href="https://www.propertyfinder.bh/">Bahrain</a></div>
+            <div class="custom-dropdown-item"> <a href="https://www.propertyfinder.eg/">Egypt</a> </div>
+            <div class="custom-dropdown-item active"><a href="https://www.propertyfinder.eg/"> Qatar</a>  </div>
+            <div class="custom-dropdown-item"><a href="https://www.propertyfinder.sa/">Saudi </a></div>
+            <div class="custom-dropdown-item"> <a href="https://www.hepsiemlak.com/"> Turkey </a></div>
+          </div>
+        </div>              
+      </div>
+      <div class="custom-footer-social">
+        <a href="https://www.instagram.com/propertyfinder.qa/"><span class="fa fa-instagram"></span></a>
+        <a href="https://www.facebook.com/propertyfinder.qa/"><span class="fa fa-facebook"></span></a>
+        <a href="https://twitter.com/propertyfinder"><span class="fa fa-twitter"></span></a>
+        <a href="https://www.linkedin.com/company/property-finder-qatar/?originalSubdomain=in"><span class="fa fa-linkedin"></span></a>
+      </div>
+    </div>
+  </footer>
+  
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.fa-bars');
+            const links = document.querySelector('.links');
+            if (links.style.display === 'flex') {
+                links.style.display = 'none';
+            } else {
+                links.style.display = 'flex';
+            }
+        }
+        document.querySelectorAll('.dropdown-toggle').forEach(item => {
+    item.addEventListener('click', function (e) {
+        e.preventDefault();
+        const dropdown = this.parentElement;
+        dropdown.classList.toggle('open');
+    });
+});
+function handleClick(section) {
+      alert(`You clicked on ${section}`);
+    }
+
+    </script>
+    <script>
+     
+        function updateDropdownContent(id, items) {
+            const dropdownContent = document.getElementById(id);
+            let contentHtml = "<ul>";
+            items.forEach(item => {
+                contentHtml += `<li>${item}</li>`;
+            });
+            contentHtml += "</ul>";
+            dropdownContent.innerHTML = contentHtml;
+        }
+    
+        function toggleDropdown(id) {
+            const dropdownContent = document.getElementById(id);
+            const dropdownTitle = dropdownContent.previousElementSibling.querySelector("span");
+    
+            if (dropdownContent.style.display === "none" || dropdownContent.style.display === "") {
+                dropdownContent.style.display = "block";
+                dropdownTitle.textContent = "▲";
+            } else {
+                dropdownContent.style.display = "none";
+                dropdownTitle.textContent = "▼";
+            }
+        }
+    
+        function openDropdown(id) {
+            const dropdownContent = document.getElementById(id);
+            const dropdownTitle = dropdownContent.previousElementSibling.querySelector("span");
+            dropdownContent.style.display = "block";
+            dropdownTitle.textContent = "▲";
+        }
+    
+        document.addEventListener("DOMContentLoaded", () => {
+            showCategory("buy");
+        });
+    </script>
+     <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const filterButtons = document.querySelectorAll(".filter-btn");
+    
+          filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+              const dropdown = button.querySelector(".dropdown-content");
+              dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+            });
+          });
+    
+          // Close dropdown when clicking outside
+          document.addEventListener("click", (e) => {
+            filterButtons.forEach(button => {
+              if (!button.contains(e.target)) {
+                button.querySelector(".dropdown-content").style.display = "none";
+              }
+            });
+          });
+        });
+      </script>
+</body>
+</html>
